@@ -1,0 +1,291 @@
+:root {
+	--backdrop: hsl(0 0% 60% / 0.12);
+  --radius: 14;
+  --border: 3;
+  --backup-border: var(--backdrop);
+  --size: 200;
+}
+
+div {
+    --base: 80;
+	--spread: 500;
+	--outer: 1;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
+.main{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("https://ohwalp.github.io/assets/images/bg.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.profile-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  width: 100%;
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+  background-color: rgba(34,36,43,0.859);
+  backdrop-filter: blur(calc(var(--cardblur, 5) * 1px));
+}
+.image{
+  position: relative;
+  height: 150px;
+  width: 150px;
+}
+.image .profile-pic{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+}
+.data{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+}
+.data h2{
+  font-size: 33px;
+  font-weight: 600;
+}
+span{
+  font-size: 18px;
+}
+.row{
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+}
+.row .info{
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* Buttons */
+.wrapper {
+    display: inline-flex;
+    list-style: none;
+    height: 120px;
+    width: 100%;
+    padding-top: 40px;
+    font-family: "Poppins", sans-serif;
+    justify-content: center;
+  }
+  
+  .wrapper .icon {
+    position: relative;
+    border-radius: 50%;
+    margin: 10px;
+    width: 50px;
+    height: 50px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .wrapper .tooltip {
+    position: absolute;
+    top: 0;
+    font-size: 14px;
+    background: #fff;
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 5px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .wrapper .tooltip::before {
+    position: absolute;
+    content: "";
+    height: 8px;
+    width: 8px;
+    background: #fff;
+    bottom: -3px;
+    left: 50%;
+    transform: translate(-50%) rotate(45deg);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .wrapper .icon:hover .tooltip {
+    top: -45px;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+  
+  .wrapper .icon:hover span,
+  .wrapper .icon:hover .tooltip {
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+  }
+  
+  .wrapper .youtube:hover,
+  .wrapper .youtube:hover .tooltip,
+  .wrapper .youtube:hover .tooltip::before {
+    background: #FF0000;
+    color: #fff;
+  }
+  
+  .wrapper .osu:hover,
+  .wrapper .osu:hover .tooltip,
+  .wrapper .osu:hover .tooltip::before {
+    background: #ff66aa;
+    color: #fff;
+  }
+  
+  .wrapper .twitch:hover,
+  .wrapper .twitch:hover .tooltip,
+  .wrapper .twitch:hover .tooltip::before {
+    background: #9146FF;
+    color: #fff;
+  }
+  
+
+/*  Glow */
+/* Glow specific styles */
+[data-glow] {
+    --border-size: calc(var(--border, 2) * 1px);
+    --spotlight-size: calc(var(--size, 150) * 1px);
+    --hue: calc(var(--base) + (var(--xp, 0) * var(--spread, 0)));
+    background-image: radial-gradient(
+      var(--spotlight-size) var(--spotlight-size) at
+      calc(var(--x, 0) * 1px)
+      calc(var(--y, 0) * 1px),
+      hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 70) * 1%) / var(--bg-spot-opacity, 0.1)), transparent
+    );
+    background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+    background-position: 50% 50%;
+    background-attachment: fixed;
+    border: var(--border-size) solid var(--backup-border);
+    position: relative;
+    touch-action: none;
+  }
+  
+  [data-glow]::before,
+  [data-glow]::after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    inset: calc(var(--border-size) * -1);
+    border: var(--border-size) solid transparent;
+    border-radius: calc(var(--radius) * 1px);
+    background-attachment: fixed;
+    background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    mask:
+      linear-gradient(transparent, transparent),
+      linear-gradient(white, white);
+    mask-clip: padding-box, border-box;
+    mask-composite: intersect;
+    border-radius: 25px;
+  }
+  
+  /* This is the emphasis light */
+  [data-glow]::before {
+    background-image: radial-gradient(
+      calc(var(--spotlight-size) * 0.75) calc(var(--spotlight-size) * 0.75) at
+      calc(var(--x, 0) * 1px)
+      calc(var(--y, 0) * 1px),
+      hsl(var(--hue, 210) calc(var(--saturation, 100) * 1%) calc(var(--lightness, 50) * 1%) / var(--border-spot-opacity, 1)), transparent 100%
+    );
+    filter: brightness(2);
+  }
+  /* This is the spotlight */
+  [data-glow]::after {
+    background-image: radial-gradient(
+      calc(var(--spotlight-size) * 0.5) calc(var(--spotlight-size) * 0.5) at
+      calc(var(--x, 0) * 1px)
+      calc(var(--y, 0) * 1px),
+      hsl(0 100% 100% / var(--border-light-opacity, 1)), transparent 100%
+    );
+  }
+  [data-glow] [data-glow] {
+    position: absolute;
+    inset: 0;
+    will-change: filter;
+    opacity: var(--outer, 1);
+  }
+  [data-glow] > [data-glow] {
+    border-radius: calc(var(--radius) * 1px);
+    border-width: calc(var(--border-size) * 20);
+    filter: blur(calc(var(--border-size) * 10));
+    background: none;
+    pointer-events: none;
+  }
+  [data-glow] > [data-glow]::before {
+    inset: -10px;
+    border-width: 10px;
+  }
+  [data-glow] [data-glow] {
+    border: none;
+  }
+  [data-glow] :is(a, button) {
+    border-radius: calc(var(--radius) * 1px);
+    border: var(--border-size) solid transparent;
+  }
+  [data-glow] :is(a, button) [data-glow] {
+    background: none;
+  }
+  [data-glow] :is(a, button) [data-glow]::before {
+    inset: calc(var(--border-size) * -1);
+    border-width: calc(var(--border-size) * 1);
+  }
+
+
+  /* Fade in */
+  .fade-in {
+    animation: fadeIn 2s;
+    -webkit-animation: fadeIn 2s;
+    -moz-animation: fadeIn 2s;
+    -o-animation: fadeIn 2s;
+    -ms-animation: fadeIn 2s;
+  }
+  
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @-o-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
